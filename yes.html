@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gift Surprise 🎁</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#ffeef2;
+    overflow:hidden;
+}
+
+.gift{
+    width:220px;
+    cursor:pointer;
+    animation: float 2s ease-in-out infinite,
+               shake 0.3s infinite alternate;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+}
+
+@keyframes shake{
+    0%{transform:translateX(-3px);}
+    100%{transform:translateX(3px);}
+}
+
+.particle{
+    position:absolute;
+    border-radius:50%;
+    animation:explode 1.2s ease-out forwards;
+}
+
+@keyframes explode{
+    to{
+        transform:translate(
+            calc(-250px + 500px * var(--x)),
+            calc(-250px + 500px * var(--y))
+        );
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<img src="gift.png" class="gift" onclick="explodeFirework()">
+
+<script>
+function explodeFirework(){
+
+    for(let i=0;i<120;i++){
+        const p=document.createElement("div");
+        p.classList.add("particle");
+        p.style.width=p.style.height=(Math.random()*12+6)+"px";
+        p.style.setProperty('--x',Math.random());
+        p.style.setProperty('--y',Math.random());
+        p.style.left="50%";
+        p.style.top="50%";
+        p.style.background=`hsl(${Math.random()*360},100%,60%)`;
+        document.body.appendChild(p);
+        setTimeout(()=>p.remove(),1200);
+    }
+
+    // 👉 After firework go to next page
+    setTimeout(()=>{
+        window.location.href="valentine.html";
+    },1200);
+}
+</script>
+
+</body>
+</html>

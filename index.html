@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Will You Be My Valentine? 🩷</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fec4ce, #ff7eb3);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.15);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .yes {
+            background: white;
+            color: #880f1b;
+        }
+
+        .no {
+            background: #ff4b5c;
+            color: white;
+            position: relative;
+        }
+
+        .heart, .rose {
+            position: absolute;
+            top: -10px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Will you be my Valentine? 💖</h1>
+    <button class="yes" onclick="goToYes()">YES 💕</button>
+    <button class="no" onmouseover="moveNo()">NO 😜</button>
+</div>
+
+<script>
+    function goToYes() {
+        window.location.href = "yes.html";
+    }
+
+    function moveNo() {
+        const btn = document.querySelector(".no");
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 200 - 100;
+        btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    function createElement(symbol, className) {
+        const el = document.createElement("div");
+        el.classList.add(className);
+        el.innerHTML = symbol;
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.fontSize = Math.random() * 20 + 15 + "px";
+        el.style.animationDuration = Math.random() * 3 + 3 + "s";
+        document.body.appendChild(el);
+
+        setTimeout(() => el.remove(), 6000);
+    }
+
+    setInterval(() => createElement("❤️", "heart"), 400);
+    setInterval(() => createElement("🌹", "rose"), 700);
+</script>
+
+</body>
+</html>
